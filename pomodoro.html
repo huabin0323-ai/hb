@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番茄钟</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --work: #ef4444;
+    --break: #22c55e;
+    --long-break: #3b82f6;
+    --ring-bg: #334155;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px;
+  }
+
+  /* 模式切换 */
+  .tabs {
+    display: flex;
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 4px;
+    gap: 4px;
+  }
+  .tab {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab.active {
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  /* 圆形计时器 */
+  .ring-wrapper {
+    position: relative;
+    width: 280px;
+    height: 280px;
+  }
+  svg {
+    transform: rotate(-90deg);
+  }
+  .ring-bg {
+    fill: none;
+    stroke: var(--ring-bg);
+    stroke-width: 8;
+  }
+  .ring-progress {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s linear;
+  }
+  .ring-progress.work { stroke: var(--work); }
+  .ring-progress.break { stroke: var(--break); }
+  .ring-progress.long-break { stroke: var(--long-break); }
+
+  .time-display {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .time {
+    font-size: 56px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 2px;
+  }
+  .status {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* 按钮 */
+  .controls {
+    display: flex;
+    gap: 12px;
+  }
+  .btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--ring-bg);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .btn:hover { border-color: var(--muted); }
+  .btn:active { transform: scale(0.95); }
+  .btn-primary {
+    width: 64px;
+    height: 64px;
+    background: var(--work);
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .btn-primary.paused { background: var(--break); }
+
+  .btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* 统计 */
+  .stats {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .stats span { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" data-mode="work">专注 25分钟</button>
+    <button class="tab" data-mode="break">短休 5分钟</button>
+    <button class="tab" data-mode="long-break">长休 15分钟</button>
+  </div>
+
+  <div class="ring-wrapper">
+    <svg width="280" height="280" viewBox="0 0 280 280">
+      <circle class="ring-bg" cx="140" cy="140" r="126"/>
+      <circle class="ring-progress work" id="ring" cx="140" cy="140" r="126"
+              stroke-dasharray="791.68" stroke-dashoffset="0"/>
+    </svg>
+    <div class="time-display">
+      <div class="time" id="timer">25:00</div>
+      <div class="status" id="status">准备开始</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" id="btn-reset" title="重置">
+      <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+    </button>
+    <button class="btn btn-primary" id="btn-start">
+      <svg id="icon-play" viewBox="0 0 24 24"><polygon points="6 4 20 12 6 20"/></svg>
+      <svg id="icon-pause" viewBox="0 0 24 24" style="display:none"><rect x="5" y="4" width="5" height="16"/><rect x="14" y="4" width="5" height="16"/></svg>
+    </button>
+    <button class="btn" id="btn-skip" title="跳过">
+      <svg viewBox="0 0 24 24"><polygon points="13 4 21 12 13 20"/><polygon points="3 4 11 12 3 20"/></svg>
+    </button>
+  </div>
+
+  <div class="stats">
+    今日已完成：<span id="count">0</span> 个番茄
+  </div>
+</div>
+
+<script>
+  const MODES = {
+    work:    { label: '专注中', minutes: 25, cssClass: 'work' },
+    break:   { label: '休息中', minutes: 5,  cssClass: 'break' },
+    'long-break': { label: '长休息', minutes: 15, cssClass: 'long-break' }
+  };
+
+  const CIRCUMFERENCE = 2 * Math.PI * 126; // ~791.68
+
+  let currentMode = 'work';
+  let totalSeconds = MODES.work.minutes * 60;
+  let remaining = totalSeconds;
+  let running = false;
+  let intervalId = null;
+  let pomodoroCount = 0;
+
+  // DOM
+  const $timer = document.getElementById('timer');
+  const $status = document.getElementById('status');
+  const $ring = document.getElementById('ring');
+  const $btnStart = document.getElementById('btn-start');
+  const $iconPlay = document.getElementById('icon-play');
+  const $iconPause = document.getElementById('icon-pause');
+  const $count = document.getElementById('count');
+  const tabs = document.querySelectorAll('.tab');
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60).toString().padStart(2, '0');
+    const sec = (s % 60).toString().padStart(2, '0');
+    return `${m}:${sec}`;
+  }
+
+  function updateDisplay() {
+    $timer.textContent = formatTime(remaining);
+    const ratio = remaining / totalSeconds;
+    $ring.style.strokeDashoffset = CIRCUMFERENCE * (1 - ratio);
+    document.title = `${formatTime(remaining)} - 番茄钟`;
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    totalSeconds = MODES[mode].minutes * 60;
+    remaining = totalSeconds;
+    running = false;
+    clearInterval(intervalId);
+    intervalId = null;
+
+    $ring.className = 'ring-progress ' + MODES[mode].cssClass;
+    $status.textContent = '准备开始';
+    $btnStart.classList.remove('paused');
+    $iconPlay.style.display = '';
+    $iconPause.style.display = 'none';
+
+    tabs.forEach(t => t.classList.remove('active'));
+    document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+
+    updateDisplay();
+  }
+
+  function startTimer() {
+    running = true;
+    $btnStart.classList.remove('paused');
+    $iconPlay.style.display = 'none';
+    $iconPause.style.display = '';
+    $status.textContent = MODES[currentMode].label;
+
+    intervalId = setInterval(() => {
+      remaining--;
+      updateDisplay();
+
+      if (remaining <= 0) {
+        clearInterval(intervalId);
+        intervalId = null;
+        running = false;
+        $btnStart.classList.add('paused');
+        $iconPlay.style.display = '';
+        $iconPause.style.display = 'none';
+        $status.textContent = '时间到！';
+        document.title = '⏰ 时间到！ - 番茄钟';
+
+        if (currentMode === 'work') {
+          pomodoroCount++;
+          $count.textContent = pomodoroCount;
+        }
+
+        new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACAf39/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH9/f4B/f3+Af39/gH=').play()
+          .catch(() => {});
+
+        notify();
+      }
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    running = false;
+    clearInterval(intervalId);
+    intervalId = null;
+    $btnStart.classList.add('paused');
+    $iconPlay.style.display = '';
+    $iconPause.style.display = 'none';
+    $status.textContent = '已暂停';
+    document.title = '已暂停 - 番茄钟';
+  }
+
+  function resetTimer() {
+    running = false;
+    clearInterval(intervalId);
+    intervalId = null;
+    remaining = MODES[currentMode].minutes * 60;
+    totalSeconds = remaining;
+    $btnStart.classList.remove('paused');
+    $iconPlay.style.display = '';
+    $iconPause.style.display = 'none';
+    $status.textContent = '准备开始';
+    document.title = '番茄钟';
+    updateDisplay();
+  }
+
+  function notify() {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      const label = MODES[currentMode].label;
+      new Notification('番茄钟', { body: `${label}时间结束！`, icon: '🍅' });
+    }
+  }
+
+  // Events
+  $btnStart.addEventListener('click', () => {
+    if (running) { pauseTimer(); }
+    else { startTimer(); }
+  });
+
+  document.getElementById('btn-reset').addEventListener('click', resetTimer);
+
+  document.getElementById('btn-skip').addEventListener('click', () => {
+    remaining = 0;
+    updateDisplay();
+    if (running) {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+    if (currentMode === 'work') {
+      pomodoroCount++;
+      $count.textContent = pomodoroCount;
+    }
+    running = false;
+    $btnStart.classList.add('paused');
+    $iconPlay.style.display = '';
+    $iconPause.style.display = 'none';
+    $status.textContent = '已跳过';
+    document.title = '番茄钟';
+    if (currentMode === 'work') {
+      pomodoroCount++;
+      $count.textContent = pomodoroCount;
+    }
+  });
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => setMode(tab.dataset.mode));
+  });
+
+  // 键盘快捷键
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space') {
+      e.preventDefault();
+      if (running) { pauseTimer(); }
+      else { startTimer(); }
+    } else if (e.code === 'KeyR') {
+      resetTimer();
+    } else if (e.code === 'Digit1') {
+      setMode('work');
+    } else if (e.code === 'Digit2') {
+      setMode('break');
+    } else if (e.code === 'Digit3') {
+      setMode('long-break');
+    }
+  });
+
+  // 请求通知权限
+  if ('Notification' in window && Notification.permission === 'default') {
+    document.addEventListener('click', () => {
+      Notification.requestPermission();
+    }, { once: true });
+  }
+
+  // 初始化
+  updateDisplay();
+</script>
+
+</body>
+</html>

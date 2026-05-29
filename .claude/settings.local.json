@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem *)",
+      "PowerShell($scripts = @\\(\"check_bounding_boxes.py\", \"check_fillable_fields.py\", \"convert_pdf_to_images.py\", \"create_validation_image.py\", \"extract_form_field_info.py\", \"extract_form_structure.py\", \"fill_fillable_fields.py\", \"fill_pdf_form_with_annotations.py\"\\); foreach \\($s in $scripts\\) { Invoke-WebRequest -Uri \"https://raw.githubusercontent.com/anthropics/skills/main/skills/pdf/scripts/$s\" -OutFile \"D:\\\\hb\\\\.claude\\\\skills\\\\pdf\\\\scripts\\\\$s\" }; Write-Output \"Scripts downloaded successfully\")",
+      "PowerShell($files = Get-ChildItem \"D:\\\\hb\\\\.claude\\\\skills\\\\pptx\" -Recurse -File; Write-Output \"Total files: $\\($files.Count\\)\"; Get-ChildItem \"D:\\\\hb\\\\.claude\\\\skills\\\\pptx\" -Recurse -Directory | ForEach-Object { Write-Output $_.FullName.Replace\\(\"D:\\\\hb\\\\.claude\\\\skills\\\\pptx\\\\\", \"\"\\) })",
+      "Bash(pip --version)",
+      "Bash(npm --version)",
+      "PowerShell(pip *)",
+      "PowerShell(python --version; python -m pip --version)",
+      "PowerShell(python --version)",
+      "PowerShell(py *)",
+      "PowerShell(winget *)",
+      "PowerShell($env:Path = [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"Machine\"\\) + \";\" + [System.Environment]::GetEnvironmentVariable\\(\"Path\",\"User\"\\); python -m pip install \"markitdown[pptx]\" Pillow pypdf pikepdf pdf2image PyMuPDF 2>&1)",
+      "PowerShell(npm install *)",
+      "Bash(python *)",
+      "Bash(Out-File -Encoding utf8 temp_pdf_text.txt)",
+      "Bash(node *)",
+      "Bash(npm install *)",
+      "PowerShell(python .claude/skills/pptx/scripts/office/soffice.py --headless --convert-to pdf \"D:\\\\hb\\\\毕业论文答辩PPT.pptx\")",
+      "PowerShell(Get-Command *)",
+      "Bash(C:\\\\Program Files\\\\LibreOffice\\\\program\\\\soffice.exe *)",
+      "Bash(copy *)",
+      "PowerShell(Copy-Item *)",
+      "Bash(pdftoppm *)",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "PowerShell(gh release *)",
+      "Bash(curl -sL \"https://api.github.com/repos/farion1231/cc-switch/releases/latest\")",
+      "Bash(curl *)",
+      "PowerShell(Start-Process \"D:\\\\hb\\\\pomodoro.html\")",
+      "Skill(update-config)"
+    ]
+  }
+}
