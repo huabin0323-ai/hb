@@ -33,14 +33,15 @@
       "Bash(git add *)",
       "Bash(rm -rf d:/hb/hb-trading/.git)",
       "Bash(rm -rf d:/hb/xhs-image-gen/.git)",
-      "Bash(echo \"// auto-push hook active\")",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   },
   "hooks": {
     "PostToolUse": [
       {
         "matcher": "Bash",
+        "if": "Bash(git commit *)",
         "hooks": [
           {
             "type": "command",
@@ -53,4 +54,3 @@
     ]
   }
 }
-// auto-push hook active
