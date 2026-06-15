@@ -246,6 +246,6 @@ streamlit run dashboard.py
 | 5. 宏观风险 | ✅ | 波动率+振幅+OI |
 | 6. 回测引擎 | ✅ | 滑动窗口回测 |
 | 7. Dashboard | ✅ | Streamlit |
-| 8. 模拟交易 | ❌ | 待开发 |
+| 8. 模拟交易 | ✅ | paper_trader.py + A股驾驶舱 |
 
 每一阶段完成后，下一阶段才能开始。任一阶段验证不通过，停下来修，不带着 bug 往前走。

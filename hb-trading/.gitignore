@@ -11,3 +11,5 @@ data/wechat_qr.png
 venv/
 node_modules/
 .streamlit/
+.ifind_token
+mcp_config.json
