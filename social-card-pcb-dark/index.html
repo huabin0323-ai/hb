@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PCB涨价背后的隐形赢家</title>
+  <style>
+    :root {
+      --sans: "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei UI", -apple-system, sans-serif;
+      --mono: ui-monospace, "SF Mono", Consolas, "Microsoft YaHei UI", monospace;
+    }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #eee; font-family: var(--sans); -webkit-font-smoothing: antialiased; width: 1080px; height: 1440px; overflow: hidden; }
+
+    .card {
+      width: 1080px; height: 1440px;
+      background: #fafaf8; color: #0a0a0a;
+      padding: 52px 64px 48px;
+    }
+
+    /* ---- header ---- */
+    .header {
+      font-family: var(--mono); font-size: 20px; color: #737373;
+      letter-spacing: 0.10em; margin-bottom: 32px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .header .dot { width: 10px; height: 10px; background: #b8860b; border-radius: 50%; display: inline-block; margin-right: 10px; }
+
+    /* ---- title ---- */
+    .kicker {
+      font-family: var(--mono); font-size: 20px; color: #b8860b;
+      letter-spacing: 0.14em; margin-bottom: 16px;
+    }
+    .title {
+      font-weight: 200; font-size: 140px; line-height: 1.06;
+      letter-spacing: -0.015em; margin-bottom: 18px;
+    }
+    .title .hl { color: #b8860b; }
+    .sub {
+      font-size: 32px; font-weight: 300; color: #737373;
+      letter-spacing: 0.03em; margin-bottom: 44px;
+    }
+
+    /* ---- chain ---- */
+    .chain {
+      display: flex; align-items: stretch; gap: 0;
+      height: 380px; margin-bottom: 24px;
+    }
+    .node {
+      flex: 1; background: #fff; border: 1px solid #d4d4d2;
+      padding: 40px 28px 28px; display: flex; flex-direction: column;
+    }
+    .node .tag {
+      font-family: var(--mono); font-size: 15px; color: #b8860b;
+      letter-spacing: 0.10em; margin-bottom: 24px;
+    }
+    .node .name {
+      font-size: 34px; font-weight: 500; line-height: 1.2; margin-bottom: 16px;
+    }
+    .node .desc {
+      font-size: 20px; color: #737373; line-height: 1.5; margin-top: auto;
+    }
+    .arr {
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; width: 48px;
+    }
+    .arr svg { width: 32px; height: 32px; }
+
+    /* ---- stats ---- */
+    .stats {
+      display: flex; gap: 16px; height: 150px; margin-bottom: 32px;
+    }
+    .stat {
+      flex: 1; background: #f0f0ee; padding: 28px 32px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .stat .num {
+      font-family: var(--mono); font-size: 52px; font-weight: 500;
+    }
+    .stat .lbl { font-size: 19px; color: #737373; margin-top: 10px; }
+    .stat.hl { background: #b8860b; }
+    .stat.hl .num, .stat.hl .lbl { color: #fff; }
+
+    /* ---- insight box ---- */
+    .insight {
+      background: #fff; border-left: 4px solid #b8860b;
+      padding: 22px 28px; margin-bottom: 32px;
+    }
+    .insight .insight-label {
+      font-family: var(--mono); font-size: 14px; color: #b8860b;
+      letter-spacing: 0.10em; margin-bottom: 8px;
+    }
+    .insight .insight-text {
+      font-size: 22px; color: #0a0a0a; line-height: 1.5; font-weight: 400;
+    }
+
+    /* ---- footer ---- */
+    .foot {
+      border-top: 1px solid #d4d4d2; padding-top: 18px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--mono); font-size: 18px; color: #737373;
+      letter-spacing: 0.06em;
+    }
+    .foot .pg { color: #b8860b; }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <div class="header">
+    <span><span class="dot"></span>硬科技投资笔记</span>
+    <span>2026.06</span>
+  </div>
+
+  <div class="kicker">▎产业链拆解 · PCB 上游</div>
+
+  <h1 class="title">PCB 涨价背后的<br><span class="hl">隐形赢家</span></h1>
+
+  <div class="sub">中东冲突 → PPE 断供 → 电子布翻倍 → 谁在赚钱？</div>
+
+  <div class="chain">
+    <div class="node">
+      <span class="tag">TRIGGER</span>
+      <div class="name">沙特 PPE<br>供应中断</div>
+      <div class="desc">中东冲突导致PPE树脂供应链断裂，价格跳涨</div>
+    </div>
+    <div class="arr">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M4 16h22M18 6l10 10-10 10" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="node">
+      <span class="tag">CONDUIT</span>
+      <div class="name">电子布<br>价格翻倍</div>
+      <div class="desc">丰田织机排至2030年，产能缺口持续扩大</div>
+    </div>
+    <div class="arr">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M4 16h22M18 6l10 10-10 10" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="node">
+      <span class="tag">RESULT</span>
+      <div class="name">PCB 价格<br>应声大涨</div>
+      <div class="desc">13家A股PCB厂砸600亿扩产，缺口至2028年</div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="num">×2</div>
+      <div class="lbl">电子布价格涨幅</div>
+    </div>
+    <div class="stat">
+      <div class="num">+40%</div>
+      <div class="lbl">CCL价格 YTD涨幅</div>
+    </div>
+    <div class="stat hl">
+      <div class="num">10 家</div>
+      <div class="lbl">深度布局公司梳理</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-label">KEY INSIGHT</div>
+    <div class="insight-text">PPE 断供 + 电子布产能卡死 → 拥有国产树脂替代 + 电子布 + PCB 三重布局的企业，正在吃掉整条链的利润</div>
+  </div>
+
+  <div class="foot">
+    <span>PCB + PPE 树脂 + 电子布 产业链图谱</span>
+    <span class="pg">1 / 8</span>
+  </div>
+
+</div>
+</body>
+</html>

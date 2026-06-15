@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PCB涨价的隐形推手 — 硬科技投资笔记</title>
+  <style>
+    :root {
+      --sans: "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei UI", -apple-system, sans-serif;
+      --mono: ui-monospace, "SF Mono", Consolas, "Microsoft YaHei UI", monospace;
+    }
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #eee; font-family: var(--sans);
+      -webkit-font-smoothing: antialiased; width: 1080px;
+    }
+
+    .card {
+      width: 1080px; height: 1440px;
+      background: #fafaf8; color: #0a0a0a;
+      padding: 52px 64px 48px;
+      display: flex; flex-direction: column;
+      page-break-after: always;
+    }
+
+    /* ===== SHARED HEADER ===== */
+    .pg-header {
+      font-family: var(--mono); font-size: 20px; color: #737373;
+      letter-spacing: 0.10em; margin-bottom: 36px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .pg-header .dot { width: 10px; height: 10px; background: #b8860b; border-radius: 50%; display: inline-block; margin-right: 10px; }
+
+    /* ===== SHARED FOOTER ===== */
+    .pg-footer {
+      border-top: 1px solid #d4d4d2; padding-top: 18px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: var(--mono); font-size: 18px; color: #737373;
+      letter-spacing: 0.06em; flex-shrink: 0; margin-top: auto;
+    }
+    .pg-footer .pn { color: #b8860b; }
+
+    /* ===== COVER ===== */
+    .kicker {
+      font-family: var(--mono); font-size: 20px; color: #b8860b;
+      letter-spacing: 0.14em; margin-bottom: 20px;
+    }
+    .cover-title {
+      font-weight: 200; font-size: 132px; line-height: 1.06;
+      letter-spacing: -0.015em; margin-bottom: 24px;
+    }
+    .cover-title .hl { color: #b8860b; }
+    .cover-sub {
+      font-size: 32px; font-weight: 300; color: #737373;
+      letter-spacing: 0.03em; line-height: 1.5; margin-bottom: 52px;
+    }
+    .cover-divider {
+      width: 80px; height: 3px; background: #b8860b; margin-bottom: 48px;
+    }
+    .cover-meta {
+      font-size: 22px; color: #525252; line-height: 1.7; font-weight: 300;
+    }
+    .cover-meta .tag {
+      display: inline-block; background: #f0f0ee; color: #b8860b;
+      padding: 4px 14px; font-family: var(--mono); font-size: 16px;
+      letter-spacing: 0.08em; margin-right: 12px;
+    }
+
+    /* ===== CONTENT PAGE SHARED ===== */
+    .section-label {
+      font-family: var(--mono); font-size: 18px; color: #b8860b;
+      letter-spacing: 0.14em; margin-bottom: 16px;
+    }
+    .content-title {
+      font-weight: 200; font-size: 72px; line-height: 1.08;
+      letter-spacing: -0.012em; margin-bottom: 14px;
+    }
+    .content-sub {
+      font-size: 26px; font-weight: 300; color: #525252;
+      letter-spacing: 0.03em; line-height: 1.4; margin-bottom: 36px;
+    }
+
+    /* ===== PAGE 2: TIMELINE ===== */
+    .timeline {
+      flex: 1; position: relative; padding-left: 48px;
+      margin: 8px 0 20px;
+    }
+    .timeline::before {
+      content: ''; position: absolute; left: 18px; top: 6px; bottom: 6px;
+      width: 2px; background: #d4d4d2;
+    }
+    .tl-item {
+      position: relative; margin-bottom: 32px; padding-bottom: 0;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -39px; top: 10px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #b8860b; border: 3px solid #fafaf8;
+      z-index: 1;
+    }
+    .tl-date {
+      font-family: var(--mono); font-size: 18px; color: #b8860b;
+      letter-spacing: 0.10em; margin-bottom: 8px;
+    }
+    .tl-title {
+      font-size: 30px; font-weight: 500; line-height: 1.3; margin-bottom: 8px;
+    }
+    .tl-desc {
+      font-size: 22px; color: #525252; line-height: 1.6; font-weight: 300;
+    }
+    .tl-data {
+      display: inline-block; background: #fff; border: 1px solid #d4d4d2;
+      padding: 10px 20px; margin-top: 12px;
+      font-family: var(--mono); font-size: 20px; color: #0a0a0a;
+    }
+    .tl-data .num { color: #b8860b; font-weight: 500; }
+
+    /* ===== PAGE 2: GEO BAR ===== */
+    .geo-bar {
+      display: flex; align-items: center; gap: 16px;
+      background: #fff; border: 1px solid #d4d4d2;
+      padding: 18px 28px; margin-bottom: 20px; flex-shrink: 0;
+    }
+    .geo-bar .loc {
+      font-family: var(--mono); font-size: 17px; color: #525252;
+    }
+    .geo-bar .loc strong { color: #b8860b; }
+    .geo-arrow {
+      color: #b8860b; font-size: 22px; font-weight: 300; letter-spacing: 0.05em;
+    }
+    .source-note {
+      font-family: var(--mono); font-size: 15px; color: #a3a3a3;
+      letter-spacing: 0.04em; flex-shrink: 0;
+    }
+
+    /* ===== PAGE 3: VERTICAL CHAIN ===== */
+    .chain-v {
+      flex: 1; display: flex; flex-direction: column; gap: 0;
+      margin: 8px 0 24px;
+    }
+    .chain-node {
+      display: flex; align-items: center; gap: 32px;
+      background: #fff; border: 1px solid #d4d4d2;
+      padding: 28px 32px; position: relative;
+    }
+    .chain-num {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #f0f0ee; color: #b8860b;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 32px; font-weight: 500;
+      flex-shrink: 0;
+    }
+    .chain-info { flex: 1; }
+    .chain-name {
+      font-size: 32px; font-weight: 500; line-height: 1.2; margin-bottom: 6px;
+    }
+    .chain-desc {
+      font-size: 20px; color: #525252; line-height: 1.5; font-weight: 300;
+    }
+    .chain-impact {
+      text-align: right; flex-shrink: 0;
+    }
+    .chain-impact .big {
+      font-family: var(--mono); font-size: 44px; font-weight: 500; color: #b8860b;
+      line-height: 1;
+    }
+    .chain-impact .unit {
+      font-size: 18px; color: #737373; font-weight: 300;
+    }
+    .chain-arrow {
+      display: flex; justify-content: center; padding: 4px 0;
+    }
+    .chain-arrow svg { width: 28px; height: 20px; }
+
+    /* stats row */
+    .stats-row {
+      display: flex; gap: 16px; height: 130px; flex-shrink: 0;
+    }
+    .stat-card {
+      flex: 1; background: #f0f0ee; padding: 24px 28px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .stat-card .big-num {
+      font-family: var(--mono); font-size: 48px; font-weight: 500; line-height: 1;
+    }
+    .stat-card .big-lbl {
+      font-size: 18px; color: #737373; margin-top: 10px;
+    }
+    .stat-card.accent { background: #b8860b; }
+    .stat-card.accent .big-num,
+    .stat-card.accent .big-lbl { color: #fff; }
+
+    /* ===== PAGE 4: THREE-COLUMN GRID ===== */
+    .bottleneck-grid {
+      flex: 1; display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin: 8px 0 24px;
+    }
+    .bn-card {
+      background: #fff; border: 1px solid #d4d4d2;
+      padding: 36px 28px 28px;
+      display: flex; flex-direction: column;
+    }
+    .bn-tag {
+      font-family: var(--mono); font-size: 16px; color: #b8860b;
+      letter-spacing: 0.12em; margin-bottom: 20px;
+    }
+    .bn-icon {
+      font-size: 48px; line-height: 1; margin-bottom: 20px;
+    }
+    .bn-title {
+      font-size: 32px; font-weight: 500; line-height: 1.2; margin-bottom: 14px;
+    }
+    .bn-desc {
+      font-size: 20px; color: #525252; line-height: 1.6; font-weight: 300;
+      flex: 1;
+    }
+    .bn-data {
+      margin-top: 20px; padding-top: 18px;
+      border-top: 1px solid #d4d4d2;
+      font-family: var(--mono); font-size: 22px; color: #b8860b; font-weight: 500;
+    }
+    .bn-data .val { font-size: 36px; display: block; line-height: 1.2; }
+    .bn-data .lbl { font-size: 15px; color: #737373; font-weight: 400; display: block; margin-top: 4px; }
+
+    .bn-insight {
+      background: #fff; border-left: 4px solid #b8860b;
+      padding: 20px 28px; flex-shrink: 0;
+    }
+    .bn-insight .il {
+      font-family: var(--mono); font-size: 14px; color: #b8860b;
+      letter-spacing: 0.10em; margin-bottom: 6px;
+    }
+    .bn-insight .it {
+      font-size: 22px; color: #0a0a0a; line-height: 1.5;
+    }
+
+    /* ===== PAGE 5: SUMMARY ===== */
+    .summary-area {
+      flex: 1; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+    }
+    .summary-quote {
+      font-size: 36px; font-weight: 300; color: #0a0a0a;
+      line-height: 1.5; max-width: 800px; margin-bottom: 40px;
+    }
+    .summary-quote .hl { color: #b8860b; font-weight: 400; }
+    .summary-divider {
+      width: 60px; height: 2px; background: #b8860b; margin-bottom: 40px;
+    }
+    .summary-next-label {
+      font-family: var(--mono); font-size: 18px; color: #b8860b;
+      letter-spacing: 0.14em; margin-bottom: 16px;
+    }
+    .summary-next-title {
+      font-size: 42px; font-weight: 300; color: #0a0a0a;
+      line-height: 1.3; margin-bottom: 40px;
+    }
+    .summary-cta {
+      font-family: var(--mono); font-size: 20px; color: #737373;
+      letter-spacing: 0.08em;
+      border: 1px solid #d4d4d2; padding: 16px 48px;
+    }
+
+    /* utility */
+    .gold { color: #b8860b; }
+  </style>
+</head>
+<body>
+
+<!-- ================================================================ -->
+<!-- PAGE 1 — COVER                                                      -->
+<!-- ================================================================ -->
+<div class="card">
+  <div class="pg-header">
+    <span><span class="dot"></span>硬科技投资笔记</span>
+    <span>2026.06</span>
+  </div>
+
+  <div class="kicker">▎产业链拆解 · PCB 上游</div>
+
+  <h1 class="cover-title">PCB 涨价的<br><span class="hl">隐形推手</span></h1>
+
+  <div class="cover-sub">中东冲突 → PPE 断供 → 电子布翻倍<br>一条被忽视的传导链</div>
+
+  <div class="cover-divider"></div>
+
+  <div class="cover-meta">
+    <span class="tag">第一期</span> PCB + PPE 树脂 + 电子布 产业链图谱<br>
+    2026年6月 · 硬科技投资笔记
+  </div>
+
+  <div class="pg-footer">
+    <span>PCB 产业链深度系列</span>
+    <span class="pn">1 / 5</span>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PAGE 2 — EVENT TIMELINE                                             -->
+<!-- ================================================================ -->
+<div class="card">
+  <div class="pg-header">
+    <span><span class="dot"></span>硬科技投资笔记</span>
+    <span>2026.06</span>
+  </div>
+
+  <div class="section-label">▎事件溯源 / EVENT</div>
+  <h2 class="content-title">中东冲突如何<br>冲击电子产业链</h2>
+  <div class="content-sub">从红海航运到PCB涨价，一条被忽视的路径</div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2026.Q1</div>
+      <div class="tl-title">中东冲突升级，红海航运受阻</div>
+      <div class="tl-desc">化工品物流成本飙升，沙特石化产品出口通道收窄，全球PPE供应链进入警戒状态</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2026.Q2</div>
+      <div class="tl-title">沙特 PPE 工厂产能削减 25-30%</div>
+      <div class="tl-desc">Sabic 被迫降低装置负荷，其全球 PPE 产能占比约 30%，直接造成全球 PPE 供应缺口</div>
+      <div class="tl-data"><span class="num">Sabic</span> 全球 PPE 产能占比 ~30%</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">NOW</div>
+      <div class="tl-title">全球 PPE 供应缺口持续扩大</div>
+      <div class="tl-desc">PPO 树脂从 65 万元/吨跳涨至 100 万元/吨，涨幅超 50%，下游电子布被迫跟涨</div>
+      <div class="tl-data">PPO <span class="num">65万 → 100万</span> /吨</div>
+    </div>
+  </div>
+
+  <div class="geo-bar">
+    <span class="loc"><strong>沙特</strong> Jubail / Yanbu</span>
+    <span class="geo-arrow">→ 红海航运 →</span>
+    <span class="loc"><strong>中国</strong> 长三角 / 珠三角</span>
+    <span class="geo-arrow">→</span>
+    <span class="loc"><strong>亚洲</strong> 电子产业链</span>
+  </div>
+
+  <div class="source-note">数据来源：百川盈孚、卓创资讯、各公司公告 · 2026.06</div>
+
+  <div class="pg-footer">
+    <span>PCB 产业链深度系列</span>
+    <span class="pn">2 / 5</span>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PAGE 3 — CONDUCTION CHAIN                                           -->
+<!-- ================================================================ -->
+<div class="card">
+  <div class="pg-header">
+    <span><span class="dot"></span>硬科技投资笔记</span>
+    <span>2026.06</span>
+  </div>
+
+  <div class="section-label">▎传导链 / CONDUCTION</div>
+  <h2 class="content-title">四层冲击<br>一层比一层贵</h2>
+
+  <div class="chain-v">
+    <!-- Layer 1: PPE -->
+    <div class="chain-node">
+      <div class="chain-num">1</div>
+      <div class="chain-info">
+        <div class="chain-name">PPE 树脂 · 缺货</div>
+        <div class="chain-desc">沙特 PPE 断供，全球缺口 15-20%，PPO 价格跳涨超 50%，下游"无米下锅"</div>
+      </div>
+      <div class="chain-impact">
+        <div class="big">+54%</div>
+        <div class="unit">PPO 涨幅</div>
+      </div>
+    </div>
+
+    <div class="chain-arrow">
+      <svg viewBox="0 0 28 20" fill="none"><path d="M14 0v16M4 10l10 10 10-10" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- Layer 2: 电子布 -->
+    <div class="chain-node">
+      <div class="chain-num">2</div>
+      <div class="chain-info">
+        <div class="chain-name">电子布 · 翻倍</div>
+        <div class="chain-desc">PPE 原料断供推升电子布成本，丰田织机排至 2030 年，供需裂缝扩大</div>
+      </div>
+      <div class="chain-impact">
+        <div class="big">&times;2</div>
+        <div class="unit">价格翻倍</div>
+      </div>
+    </div>
+
+    <div class="chain-arrow">
+      <svg viewBox="0 0 28 20" fill="none"><path d="M14 0v16M4 10l10 10 10-10" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- Layer 3: CCL -->
+    <div class="chain-node">
+      <div class="chain-num">3</div>
+      <div class="chain-info">
+        <div class="chain-name">CCL 覆铜板 · +40%</div>
+        <div class="chain-desc">电子布占 CCL 成本 20-30%，成本刚性传导，国产 CCL 厂商 YTD 涨幅约 40%</div>
+      </div>
+      <div class="chain-impact">
+        <div class="big">+40%</div>
+        <div class="unit">CCL 涨幅</div>
+      </div>
+    </div>
+
+    <div class="chain-arrow">
+      <svg viewBox="0 0 28 20" fill="none"><path d="M14 0v16M4 10l10 10 10-10" stroke="#b8860b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+
+    <!-- Layer 4: PCB -->
+    <div class="chain-node">
+      <div class="chain-num">4</div>
+      <div class="chain-info">
+        <div class="chain-name">PCB · 全面大涨</div>
+        <div class="chain-desc">13 家 A 股 PCB 厂商宣布 600 亿扩产计划，产能缺口预计持续至 2028 年</div>
+      </div>
+      <div class="chain-impact">
+        <div class="big">600 亿</div>
+        <div class="unit">扩产计划</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="big-num">&times;2</div>
+      <div class="big-lbl">电子布价格涨幅</div>
+    </div>
+    <div class="stat-card">
+      <div class="big-num">+40%</div>
+      <div class="big-lbl">CCL 价格 YTD 涨幅</div>
+    </div>
+    <div class="stat-card accent">
+      <div class="big-num">600 亿</div>
+      <div class="big-lbl">A 股 PCB 扩产规模</div>
+    </div>
+  </div>
+
+  <div class="pg-footer">
+    <span>PCB 产业链深度系列</span>
+    <span class="pn">3 / 5</span>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PAGE 4 — BOTTLENECK ANALYSIS                                        -->
+<!-- ================================================================ -->
+<div class="card">
+  <div class="pg-header">
+    <span><span class="dot"></span>硬科技投资笔记</span>
+    <span>2026.06</span>
+  </div>
+
+  <div class="section-label">▎卡脖子 / BOTTLENECK</div>
+  <h2 class="content-title">供给为什么<br>短期回不来</h2>
+  <div class="content-sub">三大结构性卡点，没有一个能在 18 个月内解决</div>
+
+  <div class="bottleneck-grid">
+    <div class="bn-card">
+      <div class="bn-tag">BOTTLENECK 01</div>
+      <div class="bn-icon">◆</div>
+      <div class="bn-title">设备<br>瓶颈</div>
+      <div class="bn-desc">高端电子布织机被丰田织机垄断，订单已排至 2030 年，新设备交付周期 5-7 年，短期无解</div>
+      <div class="bn-data">
+        <span class="val">2030</span>
+        <span class="lbl">丰田织机订单排至</span>
+      </div>
+    </div>
+
+    <div class="bn-card">
+      <div class="bn-tag">BOTTLENECK 02</div>
+      <div class="bn-icon">◇</div>
+      <div class="bn-title">材料<br>瓶颈</div>
+      <div class="bn-desc">PPE / 碳氢树脂缺口持续扩大，国产替代品需 2-3 年客户验证周期，远水难解近渴</div>
+      <div class="bn-data">
+        <span class="val">2-3 年</span>
+        <span class="lbl">国产替代验证周期</span>
+      </div>
+    </div>
+
+    <div class="bn-card">
+      <div class="bn-tag">BOTTLENECK 03</div>
+      <div class="bn-icon">○</div>
+      <div class="bn-title">产能<br>瓶颈</div>
+      <div class="bn-desc">高端产线从建设到稳定量产需 18-24 个月，且良率爬坡漫长，新进入者门槛极高</div>
+      <div class="bn-data">
+        <span class="val">18-24 月</span>
+        <span class="lbl">产线到稳定量产</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bn-insight">
+    <div class="il">KEY TAKEAWAY</div>
+    <div class="it">设备、材料、产能三重卡死 → 供给刚性至少持续到 2028 年，掌握任一环节的企业享有结构性定价权</div>
+  </div>
+
+  <div class="pg-footer">
+    <span>PCB 产业链深度系列</span>
+    <span class="pn">4 / 5</span>
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- PAGE 5 — SUMMARY + NEXT PREVIEW                                     -->
+<!-- ================================================================ -->
+<div class="card">
+  <div class="pg-header">
+    <span><span class="dot"></span>硬科技投资笔记</span>
+    <span>2026.06</span>
+  </div>
+
+  <div class="section-label">▎总结 / SUMMARY</div>
+  <h2 class="content-title">核心结论<br>与前瞻</h2>
+
+  <div class="summary-area">
+    <div class="summary-quote">
+      PPE 断供 + 电子布产能卡死<br>
+      → 拥有 <span class="hl">国产树脂替代</span> + <span class="hl">电子布</span> + <span class="hl">PCB</span><br>
+      三重布局的企业<br>
+      <span class="hl">正在吃掉整条链的利润</span>
+    </div>
+
+    <div class="summary-divider"></div>
+
+    <div class="summary-next-label">▎下期预告 / NEXT ISSUE</div>
+    <div class="summary-next-title">10 家深度布局公司<br>全方位梳理</div>
+
+    <div class="summary-cta">★ 收藏 · 关注 · 第一时间获取深度分析</div>
+  </div>
+
+  <div class="pg-footer">
+    <span>PCB 产业链深度系列</span>
+    <span class="pn">5 / 5</span>
+  </div>
+</div>
+
+</body>
+</html>
