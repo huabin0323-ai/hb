@@ -1,0 +1,438 @@
+{
+  "date": "2026-06-12",
+  "generated_at": "22:49:02",
+  "pipeline_version": "1.0",
+  "phases": {
+    "discovery": {
+      "total_candidates": 5,
+      "sources": {
+        "data_driven": 5,
+        "event_driven": 0
+      }
+    },
+    "quick_filter": {
+      "qualified": 2,
+      "rejected": 3
+    }
+  },
+  "candidates": [
+    {
+      "code": "603065",
+      "name": "宿迁联盛",
+      "source": "data-driven",
+      "heat_score": 25,
+      "boards": 4,
+      "theme": "8/5",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "连板4板",
+        "一字未开"
+      ],
+      "filter": {
+        "passed": false,
+        "tam_adj_peg_ok": false,
+        "health_ok": true,
+        "warnings": [
+          "PE为负(亏损)→不纳入深度分析候选",
+          "PEG为负(利润下滑)→基本面恶化",
+          "均线交织→方向待选择",
+          "乖离+55.27%→严重过热，均值回归压力大",
+          "EscapeRatio=10.61→FOMO逃逸！",
+          "连板4板→FOMO逃逸风险极高",
+          "需关注换手率和炸板次数：如果换手<1%且0炸板→锁筹健康；如果换手骤增→开板风险",
+          "❌ 评分不足或风险过高，建议仅观察不入深研"
+        ],
+        "score": -7,
+        "dma": {
+          "price": 13.6,
+          "ma20": 8.76,
+          "ma50": 8.3,
+          "ma100": 8.43,
+          "ma200": 8.41,
+          "atr20": 0.55,
+          "dma20_pct": 55.27,
+          "dma50_pct": 63.81,
+          "dma100_pct": 61.4,
+          "dma200_pct": 61.78,
+          "ma_ranking": "mixed",
+          "escape_ratio": 10.61
+        }
+      }
+    },
+    {
+      "code": "002971",
+      "name": "和远气体",
+      "source": "data-driven",
+      "heat_score": 20,
+      "boards": 4,
+      "theme": "7/5",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "连板4板"
+      ],
+      "filter": {
+        "passed": false,
+        "tam_adj_peg_ok": false,
+        "health_ok": true,
+        "warnings": [
+          "PE=231→极端估值，仅做事件驱动",
+          "PEG为负(利润下滑)→基本面恶化",
+          "均线多头排列→趋势健康",
+          "乖离+49.74%→严重过热，均值回归压力大",
+          "EscapeRatio=8.0→FOMO逃逸！",
+          "连板4板→FOMO逃逸风险极高",
+          "需关注换手率和炸板次数：如果换手<1%且0炸板→锁筹健康；如果换手骤增→开板风险",
+          "❌ 评分不足或风险过高，建议仅观察不入深研"
+        ],
+        "score": -3,
+        "dma": {
+          "price": 58.03,
+          "ma20": 38.75,
+          "ma50": 34.54,
+          "ma100": 32.91,
+          "ma200": 32.74,
+          "atr20": 3.05,
+          "dma20_pct": 49.74,
+          "dma50_pct": 68.01,
+          "dma100_pct": 76.33,
+          "dma200_pct": 77.26,
+          "ma_ranking": "bullish",
+          "escape_ratio": 8.0
+        }
+      }
+    },
+    {
+      "code": "601958",
+      "name": "金钼股份",
+      "source": "data-driven",
+      "heat_score": 15,
+      "boards": 2,
+      "theme": "2/2",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "2连板",
+        "一字未开"
+      ],
+      "filter": {
+        "passed": true,
+        "tam_adj_peg_ok": true,
+        "health_ok": true,
+        "warnings": [
+          "PE=24→合理区间",
+          "PEG=4.1→增长严重透支",
+          "均线多头排列→趋势健康",
+          "乖离+12.4%→偏热",
+          "EscapeRatio=8.89→FOMO逃逸！",
+          "2连板→短线偏热，关注是否为换手板→一字板加速（健康）还是连续一字板（锁筹风险）"
+        ],
+        "score": 8,
+        "dma": {
+          "price": 25.52,
+          "ma20": 22.71,
+          "ma50": 21.04,
+          "ma100": 20.96,
+          "ma200": 17.92,
+          "atr20": 1.75,
+          "dma20_pct": 12.4,
+          "dma50_pct": 21.31,
+          "dma100_pct": 21.73,
+          "dma200_pct": 42.43,
+          "ma_ranking": "bullish",
+          "escape_ratio": 8.89
+        }
+      }
+    },
+    {
+      "code": "001257",
+      "name": "盛龙股份",
+      "source": "data-driven",
+      "heat_score": 15,
+      "boards": 2,
+      "theme": "2/2",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "2连板",
+        "一字未开"
+      ],
+      "filter": {
+        "passed": true,
+        "tam_adj_peg_ok": true,
+        "health_ok": true,
+        "warnings": [
+          "PE=57→偏高",
+          "均线交织→方向待选择",
+          "乖离+10.72%→偏热",
+          "2连板→短线偏热，关注是否为换手板→一字板加速（健康）还是连续一字板（锁筹风险）",
+          "⚠️ 低评分通过——深度分析中需重点审视风险"
+        ],
+        "score": 7,
+        "dma": {
+          "price": 27.74,
+          "ma20": 25.05,
+          "ma50": 24.47,
+          "ma100": 24.47,
+          "ma200": 24.47,
+          "atr20": 1.87,
+          "dma20_pct": 10.72,
+          "dma50_pct": 13.35,
+          "dma100_pct": 13.35,
+          "dma200_pct": 13.35,
+          "ma_ranking": "mixed",
+          "escape_ratio": NaN
+        }
+      }
+    },
+    {
+      "code": "600067",
+      "name": "冠城新材",
+      "source": "data-driven",
+      "heat_score": 15,
+      "boards": 2,
+      "theme": "2/2",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "2连板",
+        "一字未开"
+      ],
+      "filter": {
+        "passed": false,
+        "tam_adj_peg_ok": true,
+        "health_ok": true,
+        "warnings": [
+          "PE=251→极端估值，仅做事件驱动",
+          "PEG为负(利润下滑)→基本面恶化",
+          "均线交织→方向待选择",
+          "乖离+12.29%→偏热",
+          "2连板→短线偏热，关注是否为换手板→一字板加速（健康）还是连续一字板（锁筹风险）",
+          "❌ 评分不足或风险过高，建议仅观察不入深研"
+        ],
+        "score": 1,
+        "dma": {
+          "price": 3.48,
+          "ma20": 3.1,
+          "ma50": 3.53,
+          "ma100": 3.87,
+          "ma200": 3.78,
+          "atr20": 0.13,
+          "dma20_pct": 12.29,
+          "dma50_pct": -1.46,
+          "dma100_pct": -10.1,
+          "dma200_pct": -7.97,
+          "ma_ranking": "mixed",
+          "escape_ratio": -6.01
+        }
+      }
+    }
+  ],
+  "qualified": [
+    {
+      "code": "601958",
+      "name": "金钼股份",
+      "source": "data-driven",
+      "heat_score": 15,
+      "boards": 2,
+      "theme": "2/2",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "2连板",
+        "一字未开"
+      ],
+      "filter": {
+        "passed": true,
+        "tam_adj_peg_ok": true,
+        "health_ok": true,
+        "warnings": [
+          "PE=24→合理区间",
+          "PEG=4.1→增长严重透支",
+          "均线多头排列→趋势健康",
+          "乖离+12.4%→偏热",
+          "EscapeRatio=8.89→FOMO逃逸！",
+          "2连板→短线偏热，关注是否为换手板→一字板加速（健康）还是连续一字板（锁筹风险）"
+        ],
+        "score": 8,
+        "dma": {
+          "price": 25.52,
+          "ma20": 22.71,
+          "ma50": 21.04,
+          "ma100": 20.96,
+          "ma200": 17.92,
+          "atr20": 1.75,
+          "dma20_pct": 12.4,
+          "dma50_pct": 21.31,
+          "dma100_pct": 21.73,
+          "dma200_pct": 42.43,
+          "ma_ranking": "bullish",
+          "escape_ratio": 8.89
+        }
+      }
+    },
+    {
+      "code": "001257",
+      "name": "盛龙股份",
+      "source": "data-driven",
+      "heat_score": 15,
+      "boards": 2,
+      "theme": "2/2",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "2连板",
+        "一字未开"
+      ],
+      "filter": {
+        "passed": true,
+        "tam_adj_peg_ok": true,
+        "health_ok": true,
+        "warnings": [
+          "PE=57→偏高",
+          "均线交织→方向待选择",
+          "乖离+10.72%→偏热",
+          "2连板→短线偏热，关注是否为换手板→一字板加速（健康）还是连续一字板（锁筹风险）",
+          "⚠️ 低评分通过——深度分析中需重点审视风险"
+        ],
+        "score": 7,
+        "dma": {
+          "price": 27.74,
+          "ma20": 25.05,
+          "ma50": 24.47,
+          "ma100": 24.47,
+          "ma200": 24.47,
+          "atr20": 1.87,
+          "dma20_pct": 10.72,
+          "dma50_pct": 13.35,
+          "dma100_pct": 13.35,
+          "dma200_pct": 13.35,
+          "ma_ranking": "mixed",
+          "escape_ratio": NaN
+        }
+      }
+    }
+  ],
+  "rejected": [
+    {
+      "code": "603065",
+      "name": "宿迁联盛",
+      "source": "data-driven",
+      "heat_score": 25,
+      "boards": 4,
+      "theme": "8/5",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "连板4板",
+        "一字未开"
+      ],
+      "filter": {
+        "passed": false,
+        "tam_adj_peg_ok": false,
+        "health_ok": true,
+        "warnings": [
+          "PE为负(亏损)→不纳入深度分析候选",
+          "PEG为负(利润下滑)→基本面恶化",
+          "均线交织→方向待选择",
+          "乖离+55.27%→严重过热，均值回归压力大",
+          "EscapeRatio=10.61→FOMO逃逸！",
+          "连板4板→FOMO逃逸风险极高",
+          "需关注换手率和炸板次数：如果换手<1%且0炸板→锁筹健康；如果换手骤增→开板风险",
+          "❌ 评分不足或风险过高，建议仅观察不入深研"
+        ],
+        "score": -7,
+        "dma": {
+          "price": 13.6,
+          "ma20": 8.76,
+          "ma50": 8.3,
+          "ma100": 8.43,
+          "ma200": 8.41,
+          "atr20": 0.55,
+          "dma20_pct": 55.27,
+          "dma50_pct": 63.81,
+          "dma100_pct": 61.4,
+          "dma200_pct": 61.78,
+          "ma_ranking": "mixed",
+          "escape_ratio": 10.61
+        }
+      }
+    },
+    {
+      "code": "002971",
+      "name": "和远气体",
+      "source": "data-driven",
+      "heat_score": 20,
+      "boards": 4,
+      "theme": "7/5",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "连板4板"
+      ],
+      "filter": {
+        "passed": false,
+        "tam_adj_peg_ok": false,
+        "health_ok": true,
+        "warnings": [
+          "PE=231→极端估值，仅做事件驱动",
+          "PEG为负(利润下滑)→基本面恶化",
+          "均线多头排列→趋势健康",
+          "乖离+49.74%→严重过热，均值回归压力大",
+          "EscapeRatio=8.0→FOMO逃逸！",
+          "连板4板→FOMO逃逸风险极高",
+          "需关注换手率和炸板次数：如果换手<1%且0炸板→锁筹健康；如果换手骤增→开板风险",
+          "❌ 评分不足或风险过高，建议仅观察不入深研"
+        ],
+        "score": -3,
+        "dma": {
+          "price": 58.03,
+          "ma20": 38.75,
+          "ma50": 34.54,
+          "ma100": 32.91,
+          "ma200": 32.74,
+          "atr20": 3.05,
+          "dma20_pct": 49.74,
+          "dma50_pct": 68.01,
+          "dma100_pct": 76.33,
+          "dma200_pct": 77.26,
+          "ma_ranking": "bullish",
+          "escape_ratio": 8.0
+        }
+      }
+    },
+    {
+      "code": "600067",
+      "name": "冠城新材",
+      "source": "data-driven",
+      "heat_score": 15,
+      "boards": 2,
+      "theme": "2/2",
+      "net_buy": 0,
+      "discovery_reasons": [
+        "2连板",
+        "一字未开"
+      ],
+      "filter": {
+        "passed": false,
+        "tam_adj_peg_ok": true,
+        "health_ok": true,
+        "warnings": [
+          "PE=251→极端估值，仅做事件驱动",
+          "PEG为负(利润下滑)→基本面恶化",
+          "均线交织→方向待选择",
+          "乖离+12.29%→偏热",
+          "2连板→短线偏热，关注是否为换手板→一字板加速（健康）还是连续一字板（锁筹风险）",
+          "❌ 评分不足或风险过高，建议仅观察不入深研"
+        ],
+        "score": 1,
+        "dma": {
+          "price": 3.48,
+          "ma20": 3.1,
+          "ma50": 3.53,
+          "ma100": 3.87,
+          "ma200": 3.78,
+          "atr20": 0.13,
+          "dma20_pct": 12.29,
+          "dma50_pct": -1.46,
+          "dma100_pct": -10.1,
+          "dma200_pct": -7.97,
+          "ma_ranking": "mixed",
+          "escape_ratio": -6.01
+        }
+      }
+    }
+  ]
+}

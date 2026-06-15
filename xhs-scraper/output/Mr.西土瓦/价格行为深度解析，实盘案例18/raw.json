@@ -1,0 +1,117 @@
+{
+  "platform": "xhs",
+  "url": "https://www.xiaohongshu.com/explore/69b50311000000001d01d3b9?xsec_token=ABF2i9Gy4_cbt3gbx5da4bz79Jj3jCptamWO6VGNKG2Qw=",
+  "note_id": "69b50311000000001d01d3b9",
+  "title": "价格行为深度解析，实盘案例18",
+  "author": "Mr.西土瓦",
+  "content": "这是一个失败的案例\n1，我在K3突破K2高点时，并且是在封板过程中，打板入场\n2，K3封板后迅速下杀，到收盘时，我已被深套5个多点\n3，K4开盘迅速冲高后快速回落，没及时跑，又被套5个多点，才出来，下午盘直接封跌停\n这票隔夜的功夫，套走我十个多点，还好我只买了200股，用于试手打板，没想到打板如此凶险。\n失败原因分析：\n1，K1至K2，五根K线高度重叠，上下影线众多且幅度大，并且还有几根十字星，这在阿布价格行为学里，被称作“铁丝网”形态\n2，铁丝网形态，本质是一个小型交易区间，而交易区间的操作应该是“低买高卖”，我在突破铁丝网形态高点买入，其实是买在了交易区间顶部，这严重违背了交易区间“低买高卖”的交易原则\n大家以后见到铁丝网形态，一定要管住手，别交易，如果实在想交易，那么就等向下跌破铁丝网形态后，出现多头反转结构，再向上突破反转结构高点，再入场做多，期待它向下跌破失败，而反转向上#价格行为分析 #阿布价格行为 #炒股日记 #价格行为学 #阿尔布鲁克斯价格行为课程 #PA",
+  "images": [
+    "https://fe-platform.xhscdn.com/platform/104101l0320so64n6nk062u7au7rdm9g007pkcqvqmd668?imageView2/2/format/webp",
+    "https://fe-platform.xhscdn.com/platform/104101l0321829dg07k06jn2ge0jp60000000007dp7iga.png?imageView2/2/format/webp",
+    "https://fe-platform.xhscdn.com/platform/104101l03210hgobqnu062u7au7rdm9g007pkcqst0kbve?imageView2/2/w/198/format/webp",
+    "https://fe-platform.xhscdn.com/platform/104101l03210hgoi2nu062u7au7rdm9g007pkcqtn1j2u4?imageView2/2/w/198/format/webp",
+    "https://sns-webpic-qc.xhscdn.com/202606122319/cb335020a22dec5833a52e0430558b33/notes_pre_post/1040g3k031tme3o836q005pjkddphov6l7r8jmi0!nd_dft_wgth_webp_3"
+  ],
+  "local_images": [
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_01.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_02.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_03.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_04.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_05.webp"
+  ],
+  "likes": 6,
+  "collects": 9,
+  "comments": [
+    {
+      "id": "69b535d800000000160142df",
+      "user": "安小懒",
+      "content": "敢于分享失败经验的是真正的高手[点赞R]。（并且我也不认为这是失败，只是概率正好走到了不希望他走的那一头而已）",
+      "likes": 6,
+      "time_str": 1773483481000,
+      "replies": [],
+      "sub_count": 12
+    },
+    {
+      "id": "69b52e010000000015004bd2",
+      "user": "幸运的小石匠",
+      "content": "有个疑问，这个铁丝网之前不是一段上涨的背景里吗，可以把K3突破K2看做高二牛旗，也就是说也可以把铁丝网看成回调，但是k4出来，收线低位的阴线，就有可能是震荡区间或者形成双顶反转，后面又一根小实体阴线，连续两根收在低位的阴线，这个时候可以跑了",
+      "likes": 0,
+      "time_str": 1773481473000,
+      "replies": [],
+      "sub_count": 3
+    },
+    {
+      "id": "69b50bc60000000002034a48",
+      "user": "M-i-a-喵喵喵",
+      "content": "我就不小心买进去了个铁丝网[笑哭R]刚好在学到这一课之前的一周，现在还被套着[笑哭R]",
+      "likes": 0,
+      "time_str": 1773472711000,
+      "replies": [],
+      "sub_count": 2
+    },
+    {
+      "id": "69b55a1300000000310025d1",
+      "user": "😉",
+      "content": "我弱弱的分析一下，由于k3的下杀，收盘前也没有拉回，证明多头有点弱，所以第二天开盘冲高后应立即卖，是这个理吗？",
+      "likes": 0,
+      "time_str": 1773492756000,
+      "replies": [],
+      "sub_count": 1
+    },
+    {
+      "id": "69b7d9a1000000000202ae5f",
+      "user": "更有甚者",
+      "content": "请教下做短期隔夜有很好的第二段上涨背景，但是长的时间周期是铁丝网中高位，还能买吗",
+      "likes": 0,
+      "time_str": 1773656481000,
+      "replies": [],
+      "sub_count": 1
+    },
+    {
+      "id": "69b55bd50000000015015263",
+      "user": "momo",
+      "content": "博主，我那个通D是不是也算铁丝网形态呀",
+      "likes": 0,
+      "time_str": 1773493206000,
+      "replies": [],
+      "sub_count": 1
+    },
+    {
+      "id": "69bc22ec00000000300260c0",
+      "user": "Vicar_Amelia",
+      "content": "请教一下 “那么就等向下跌破铁丝网形态后，出现多头反转结构，再向上突破反转结构高点，再入场做多，期待它向下跌破失败，而反转向上” 这句话什么意思？我没看懂[笑哭R]",
+      "likes": 0,
+      "time_str": 1773937389000,
+      "replies": [],
+      "sub_count": 1
+    },
+    {
+      "id": "69b7a93b0000000015004110",
+      "user": "东岸居民",
+      "content": "这周试试分2笔，50%仓位做上涨通道，1周后看看情况如何[笑哭R]",
+      "likes": 1,
+      "time_str": 1773644091000,
+      "replies": [],
+      "sub_count": 0
+    },
+    {
+      "id": "69b51b50000000000d037eb7",
+      "user": "真题.王",
+      "content": "铁丝网形态是不是说k3要突破前面最长的上影线才算突破",
+      "likes": 0,
+      "time_str": 1773476688000,
+      "replies": [],
+      "sub_count": 1
+    },
+    {
+      "id": "69b513a900000000150033c9",
+      "user": "sunny",
+      "content": "还好跑出来了，我之前吃过好几个跌停[捂脸R]",
+      "likes": 0,
+      "time_str": 1773474730000,
+      "replies": [],
+      "sub_count": 1
+    }
+  ],
+  "comment_count": 10
+}

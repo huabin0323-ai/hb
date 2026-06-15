@@ -1,0 +1,35 @@
+"""Scraper config bridge — re-exports from unified config with scraper-compatible names."""
+import sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
+from config import (
+    # Browser
+    XHS_BROWSER_CHANNEL as BROWSER_CHANNEL,
+    XHS_HEADLESS as HEADLESS,
+    XHS_VIEWPORT_WIDTH as VIEWPORT_WIDTH,
+    XHS_VIEWPORT_HEIGHT as VIEWPORT_HEIGHT,
+    # Anti-bot
+    XHS_SCROLL_DELAY_MIN as SCROLL_DELAY_MIN,
+    XHS_SCROLL_DELAY_MAX as SCROLL_DELAY_MAX,
+    XHS_PAGE_TIMEOUT as PAGE_TIMEOUT,
+    XHS_COMMENT_API_TIMEOUT as COMMENT_API_TIMEOUT,
+    # Comments
+    XHS_MAX_COMMENTS as MAX_COMMENTS,
+    XHS_MAX_SUB_COMMENTS as MAX_SUB_COMMENTS,
+    # Author
+    XHS_MAX_AUTHOR_NOTES as MAX_AUTHOR_NOTES,
+    XHS_AUTHOR_DELAY_MIN as AUTHOR_DELAY_MIN,
+    XHS_AUTHOR_DELAY_MAX as AUTHOR_DELAY_MAX,
+    XHS_AUTHOR_SCROLL_PAGES as AUTHOR_SCROLL_PAGES,
+    # Output
+    XHS_SCRAPER_OUTPUT_DIR as OUTPUT_DIR,
+    PROJECT_ROOT,
+)
+
+CONTENT_FILENAME = "content.md"
+RAW_FILENAME = "raw.json"
+SUMMARY_FILENAME = "summary.md"
+SCROLL_DISTANCE_MIN = 200
+SCROLL_DISTANCE_MAX = 600
+USER_POSTED_PAGE_SIZE = 30

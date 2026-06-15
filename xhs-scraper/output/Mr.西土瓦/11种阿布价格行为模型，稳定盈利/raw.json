@@ -1,0 +1,119 @@
+{
+  "platform": "xhs",
+  "url": "https://www.xiaohongshu.com/explore/6989c9d4000000000b00bc25?xsec_token=ABpikABqsiAHRl10rQTTc8gSUzOR0RAynfwQ5_3U_J1JM=",
+  "note_id": "6989c9d4000000000b00bc25",
+  "title": "11种阿布价格行为模型，稳定盈利",
+  "author": "Mr.西土瓦",
+  "content": "昨天写的帖子，内容不够隐晦，被下架了。\n今天换个马甲，重写一篇，但很多细节不能讲太清楚，大家就将就看。\n不懂评论区提问，我有空会回复。\n只讨论技术问题，涉及具体的票，不回复。\n只选处于上涨趋势的，其他一概无视。\n以下模型，我只在上涨趋势中使用：\n1，三推楔形牛旗，两波反转\n2，急速与通道\n3，EMA20均线缺口K线\n4，强趋势回踩趋势线\n5，跌破趋势线回测前高\n6，趋势票任意买\n7，回踩EMA20均线高2\n8，失败的突破（假突破）\n9，最终旗形反转\n10，对牛旗突破回调\n11，失败再失败#价格行为分析 #阿布价格行为 #价格行为学 #炒股日记 #PA",
+  "images": [
+    "https://fe-platform.xhscdn.com/platform/104101l0320so64n6nk062u7au7rdm9g007pkcqvqmd668?imageView2/2/format/webp",
+    "https://fe-platform.xhscdn.com/platform/104101l0321829dg07k06jn2ge0jp60000000007dp7iga.png?imageView2/2/format/webp",
+    "https://fe-platform.xhscdn.com/platform/104101l03210hgobqnu062u7au7rdm9g007pkcqst0kbve?imageView2/2/w/198/format/webp",
+    "https://fe-platform.xhscdn.com/platform/104101l03210hgoi2nu062u7au7rdm9g007pkcqtn1j2u4?imageView2/2/w/198/format/webp",
+    "https://sns-webpic-qc.xhscdn.com/202606122321/f7b7392a4b8325dea3f5b7f0bdf3ad44/notes_pre_post/1040g3k031sc7orub580g5pjkddphov6l1e93lqo!nd_dft_wlteh_webp_3",
+    "http://sns-webpic-qc.xhscdn.com/202606122321/66b155f97a66b9d0882d7b73fa2a734a/comment/1040g4b831sckogh55c005o3o54008prtsanqmqo!nc_n_webp_mw_1"
+  ],
+  "local_images": [
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_01.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_02.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_03.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_04.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_05.webp",
+    "D:\\hb\\xhs-scraper\\output\\Mr.西土瓦\\_tmp\\images\\img_06.webp"
+  ],
+  "likes": 0,
+  "collects": 258,
+  "comments": [
+    {
+      "id": "698a3152000000000600d21a",
+      "user": "Chad",
+      "content": "请问哥们，蓝色虚线处算不算急速上升转通道后，向下突破失败后的进场做多位置？",
+      "likes": 0,
+      "time_str": 1770664277000,
+      "replies": [],
+      "sub_count": 24
+    },
+    {
+      "id": "6989e34c000000000600fcaf",
+      "user": "火热探究",
+      "content": "第3条是什么意思，比如强趋势回踩ema20可以直接buy limit吗",
+      "likes": 0,
+      "time_str": 1770644301000,
+      "replies": [],
+      "sub_count": 19
+    },
+    {
+      "id": "698aa2870000000004000fd1",
+      "user": "7Gek",
+      "content": "博主你的内容非常棒[飞吻R]，但是要注意，我关注的好几个博主都被封了或者下架了，可能被举报了，你要注意一下",
+      "likes": 1,
+      "time_str": 1770693256000,
+      "replies": [],
+      "sub_count": 1
+    },
+    {
+      "id": "6989e364000000000c00b5e8",
+      "user": "B16",
+      "content": "请问你是直接看阿布的书，还是看网上哪些博主的视频学习的？",
+      "likes": 0,
+      "time_str": 1770644324000,
+      "replies": [],
+      "sub_count": 16
+    },
+    {
+      "id": "698c6690000000000b0347b1",
+      "user": "安小懒",
+      "content": "想请教下，在初期开始时，您每天的选股要花多少时间。确定了盘子大小后，每个个股是手工一个个遍历目视，还是先用搜索词条，类似震荡率是多少到多少（随意说了个例子）。目视之外有其他的数据搜索方式辅助吗（我每天的遍历个股工作都很花时间、想知道自己是不够熟悉还是方法不对）。",
+      "likes": 0,
+      "time_str": 1770808977000,
+      "replies": [],
+      "sub_count": 14
+    },
+    {
+      "id": "6989fcb1000000000d0101a7",
+      "user": "翻身",
+      "content": "万一失败了怎么跑路啊，直接跌停板不是一把亏进去了[害羞R]",
+      "likes": 0,
+      "time_str": 1770650802000,
+      "replies": [],
+      "sub_count": 5
+    },
+    {
+      "id": "698ae8b1000000000603266c",
+      "user": "双木成林",
+      "content": "博主老师说的这些结构，我心里都有数了，大概能想象的出来，但是去看盘子还是不敢下手，就是怕自己看错了[暗中观察R]某些时候鼓起勇气下手了，第二天红一天就卖了，后边直接飞起，最近几个🎫都是这样，错失了几十点的利润",
+      "likes": 0,
+      "time_str": 1770711217000,
+      "replies": [],
+      "sub_count": 4
+    },
+    {
+      "id": "6989e931000000000b034fc1",
+      "user": "煖煖大王",
+      "content": "均线缺口看书没看懂",
+      "likes": 0,
+      "time_str": 1770645810000,
+      "replies": [],
+      "sub_count": 11
+    },
+    {
+      "id": "699d3194000000000f02e8c3",
+      "user": "moomoo哥",
+      "content": "老哥有个问题，左侧的行情会影响你对右边的判断么，如果影响您会以那个为主，比如左侧强支持，右侧又是连续下跌，跌到这个强支撑这。这会您会怎么做",
+      "likes": 0,
+      "time_str": 1771909524000,
+      "replies": [],
+      "sub_count": 5
+    },
+    {
+      "id": "6989e844000000000f018c44",
+      "user": "uu",
+      "content": "牛逼大哥，你真是我去学阿布做大A的信心[点赞R]",
+      "likes": 0,
+      "time_str": 1770645573000,
+      "replies": [],
+      "sub_count": 5
+    }
+  ],
+  "comment_count": 10
+}

@@ -1,0 +1,41 @@
+{
+  "date": "2026-06-12",
+  "generated_at": "15:47:09",
+  "hot_stocks": [
+    {
+      "code": "603065",
+      "name": "宿迁联盛",
+      "heat_score": 25,
+      "boards": 4,
+      "theme": "8/5",
+      "net_buy": 0,
+      "reasons": [
+        "连板4板",
+        "一字未开"
+      ]
+    },
+    {
+      "code": "002971",
+      "name": "和远气体",
+      "heat_score": 20,
+      "boards": 4,
+      "theme": "7/5",
+      "net_buy": 0,
+      "reasons": [
+        "连板4板"
+      ]
+    },
+    {
+      "code": "601958",
+      "name": "金钼股份",
+      "heat_score": 15,
+      "boards": 2,
+      "theme": "2/2",
+      "net_buy": 0,
+      "reasons": [
+        "2连板",
+        "一字未开"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+- [hb-trading 交易系统项目](hb-trading-project.md) — 加密货币半自动交易系统，Al Brooks价格行为学+情绪打分
