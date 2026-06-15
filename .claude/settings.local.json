@@ -32,7 +32,25 @@
       "Skill(update-config)",
       "Bash(git add *)",
       "Bash(rm -rf d:/hb/hb-trading/.git)",
-      "Bash(rm -rf d:/hb/xhs-image-gen/.git)"
+      "Bash(rm -rf d:/hb/xhs-image-gen/.git)",
+      "Bash(echo \"// auto-push hook active\")",
+      "Bash(git commit *)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git push origin main",
+            "shell": "bash",
+            "timeout": 30
+          }
+        ]
+      }
     ]
   }
 }
+// auto-push hook active
