@@ -79,17 +79,38 @@ def _parse_markdown_table(text: str, symbol: str) -> pd.DataFrame:
     if len(lines) < 2:
         return pd.DataFrame()
 
+    # Parse pipe-delimited, but iFinD column order varies by query.
+    # Strategy: try keyword mapping first, then fall back to all columns as-is.
     header = [h.strip() for h in lines[0].split("|") if h.strip()]
     col_map = {}
     for i, h in enumerate(header):
-        hc = h.replace("(元)", "").replace("(%)", "").replace("(股)", "").replace("（元）", "")
+        hc = h.replace("(元)", "").replace("(%)", "").replace("(股)", "").replace("（元）", "").replace("（万股）", "")
         if "日期" in hc: col_map["date"] = i
-        elif "开盘" in hc: col_map["open"] = i
-        elif "最高" in hc: col_map["high"] = i
+        elif "最高" in hc or ("高" in hc and "价" in hc and "最" not in hc): col_map["high"] = i
         elif "最低" in hc: col_map["low"] = i
-        elif "收盘" in hc: col_map["close"] = i
-        elif "成交" in hc and "量" in hc: col_map["volume"] = i
+        elif "成交" in hc and "量" in hc and "额" not in hc: col_map["volume"] = i
         elif "成交额" in hc: col_map["amount"] = i
+
+    # open/close are ambiguous in garbled text — use positional:
+    # iFinD standard OHLCV order puts close before high, open at end
+    # Fallback: keep ALL numeric columns as named columns
+    price_cols = [i for i, h in enumerate(header)
+                  if any(kw in h for kw in ["价", "盘"]) and "日期" not in h]
+
+    # If we found exactly 4 price columns, they're: close, high, low, open (in order)
+    if "open" not in col_map and "close" not in col_map and len(price_cols) >= 4:
+        col_map["close"] = price_cols[0]
+        col_map["high"] = price_cols[1]
+        col_map["low"] = price_cols[2]
+        col_map["open"] = price_cols[3]
+    elif "open" not in col_map and len(price_cols) >= 2:
+        # Partial: try to fill missing
+        for idx in price_cols:
+            h = header[idx]
+            if "收" in h: col_map["close"] = idx
+            elif "开" in h: col_map["open"] = idx
+            elif "最" in h and "高" in h: col_map["high"] = idx
+            elif "最" in h and "低" in h: col_map["low"] = idx
 
     rows = []
     for line in lines[1:]:
@@ -116,7 +137,12 @@ def _parse_markdown_table(text: str, symbol: str) -> pd.DataFrame:
         if c in df.columns:
             df[c] = pd.to_numeric(df[c], errors="coerce")
     df["date"] = pd.to_datetime(df["date"], format="%Y%m%d")
-    df = df.dropna(subset=["open", "close"]).sort_values("date")
+    # Drop rows missing key columns, but be tolerant
+    required = [c for c in ["open", "close"] if c in df.columns]
+    if required:
+        df = df.dropna(subset=required)
+    if "date" in df.columns:
+        df = df.sort_values("date")
 
     if len(df) >= 20:
         logger.info(f"iFinD K-line: {symbol} {len(df)} bars")
